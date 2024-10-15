@@ -18,7 +18,19 @@ except :
 verified_set = {1, 2, 4}
 current_set = {1, 2, 4}
 true_false = False
-try :    
+print("How do you want the program to run ? Options:")
+print("Long (the program will go through each step until it reaches 4)")
+print("Short (if the program goes through a step it already met before, it will stop and go on to next number)")
+full_short = input(">")
+if full_short == "Long":
+    
+elif full_short == "Short":
+    
+else:
+    while full_short != "Short" or full_short != "Long"
+        print("you have to enter on of the two options (Long/Short)")
+        full_short = input(">")
+try:    
         repeat_range = input("How many times do you want the program to repeat :")
         if isinstance(int(repeat_range), int):
             print(f"Ok, the program will repeat {repeat_range} times.")
@@ -38,6 +50,7 @@ for i in range(int(repeat_range)):
     current_number = starting_point
     print(current_number)
     while current_number not in verified_set:
+        steps = 0
         if (int(current_number) % 2) == 0:
             current_number = int(current_number) // 2
         else:
@@ -45,7 +58,12 @@ for i in range(int(repeat_range)):
 
         print(int(current_number))
         current_set.add(int(current_number))
+        steps += 1
+    if full_short == "Short":
+        verified_set.update(current_set)
+        print(verified_set)
+    elif full_short == "Long":
+        print(f"Number of steps : {steps}")
 
-    verified_set.update(current_set)
-    print(verified_set)
     starting_point = int(starting_point) + 1
+        
