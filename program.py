@@ -1,15 +1,37 @@
-starting_point = 1
+true_false2 = False
+try :    
+        starting_point = input("What should be the starting point:")
+        if isinstance(int(starting_point), int):
+            print("Ok, the program will start at {starting_point}.")
+            true_false2 = True 
+except :
+    while not true_false:
+        try:    
+            if not isinstance(int(starting_point), int):
+                raise ValueError
+            else:
+                true_false = True 
+        except ValueError:
+            print("You have to enter a positive number with no decimals")
+            starting_point = input("Enter your number again:")
 verified_set = {1, 2, 4}
 current_set = {1, 2, 4}
 true_false = False
-while not true_false:
-    try :    
+try :    
         repeat_range = input("How many times do you want the program to repeat :")
         if isinstance(int(repeat_range), int):
             print("Ok, the program will repeat {repeat_range} times.")
-            true_false = True
-    except ValueError :
-        repeat_range = input("You have to enter a positive number with no decimals :")
+            true_false = True 
+except :
+    while not true_false:
+        try:    
+            if not isinstance(int(repeat_range), int):
+                raise ValueError
+            else:
+                true_false = True 
+        except ValueError:
+            print("You have to enter a positive number with no decimals")
+            repeat_range = input("Enter your number again:")
 for i in range(int(repeat_range)):
     current_number = starting_point
     print(current_number)
