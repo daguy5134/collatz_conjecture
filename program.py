@@ -1,51 +1,37 @@
-true_false2 = False
-try :    
-        starting_point = input("What should be the starting point:")
-        if isinstance(int(starting_point), int):
-            true_false2 = True 
-            print(f"Ok, the program will start at {starting_point}.")
-except :
-    while not true_false2:
-        try:    
-            if not isinstance(int(starting_point), int):
-                raise ValueError
-            else:
-                true_false2 = True 
-                print(f"Ok, the program will start at {starting_point}.")
-        except ValueError:
-            print("You have to enter a positive number with no decimals")
-            starting_point = input("Enter your number again:")
+while True:
+    print("What should be the starting point ?")
+    starting_point = input(">")
+    try:
+        starting_point = int(starting_point)
+        print(f"Ok, the program will start at {starting_point}.")
+        break
+    except:
+        print("You have to enter a positive number with no decimals.")
 verified_set = {1, 2, 4}
 current_set = {1, 2, 4}
-true_false = False
-print("How do you want the program to run ? Options:")
-print("Long (the program will go through each step until it reaches 4)")
-print("Short (if the program goes through a step it already met before, it will stop and go on to next number)")
-full_short = input(">")
-if full_short == "Long":
-    
-elif full_short == "Short":
-    
-else:
-    while full_short != "Short" or full_short != "Long"
+while True:
+    print("How do you want the program to run ? Options:")
+    print("Long (the program will go through each step until it reaches 4)")
+    print("Short (if the program goes through a step it already met before, it will stop and go on to next number)")
+    full_short = input(">")
+    try:
+        full_short == "Full" or "Short"
+        if full_short == "Full":
+            print("Ok, the program will run through" 
+                  "every step and show you how many there are.")
+        else: 
+            print("Ok, the program will go to the next number"
+                  "if it meets a step it already went through.")
+        break
+    except:
         print("you have to enter on of the two options (Long/Short)")
         full_short = input(">")
-try:    
-        repeat_range = input("How many times do you want the program to repeat :")
-        if isinstance(int(repeat_range), int):
-            print(f"Ok, the program will repeat {repeat_range} times.")
-            true_false = True 
-except :
-    while not true_false:
-        try:    
-            if not isinstance(int(repeat_range), int):
-                raise ValueError
-            else:
-                true_false = True 
-                print(f"Ok, the program will repeat {repeat_range} times.")
-        except ValueError:
-            print("You have to enter a positive number with no decimals")
-            repeat_range = input("Enter your number again:")
+print("How many times do you want the program to repeat ?")
+repeat_range = input(">")
+while not isinstance(repeat_range, int):
+    print("You have to enter a positive number with no decimals")
+    repeat_range = input(">")
+print(f"Ok, the program will repeat {repeat_range} times.")
 for i in range(int(repeat_range)):
     current_number = starting_point
     print(current_number)
