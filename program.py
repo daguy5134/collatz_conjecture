@@ -105,15 +105,15 @@ while restart_level == "b":
             final_list = list(verified_set_2)
         final_list.sort()
         print(f"These are all the numbers that were verified : {final_list}")
-        print("Do you want to run the program another time (Options : yes/no) ?")
+        print("Do you want to run the program another time [yes(y)/no(n)] ?")
 
         while True:
             restart = input(">")
-            if restart not in ["yes", "no"]:
-                print("You have to enter one of the two options (yes/no).")
+            if restart not in ["y", "n"]:
+                print("You have to enter one of the two options (y/n).")
             else:
                 break
-        if restart == "yes":
+        if restart == "y":
             print("Do you want to restart from beginning(b) or from where you ended(e)?")
             while True:
                 restart_level = input(">")
@@ -127,8 +127,8 @@ while restart_level == "b":
                 print("and keep the same verified list. You will only be ")
                 print("asked how many times it should run.")
             elif restart_level == "b":
-                print("That means the program will run again completely, as" 
-                      " if it was the first time you ran the program.")
+                print("That means the program will run again completely, as") 
+                print(" if it was the first time you ran the program.")
         else:
             print("Ok, the program will stop now.")
             break
