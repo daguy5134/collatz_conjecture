@@ -38,8 +38,8 @@ if intro == "i":
     time.sleep(1)
     print("__________________________________________________________________")
     time.sleep(1)
-restart_level = "beginning"
-while restart_level == "beginning":
+restart_level = "b"
+while restart_level == "b":
     print("What should be the starting point ?")
     while True:
         starting_point = input(">")
@@ -54,25 +54,20 @@ while restart_level == "beginning":
     current_set = {1, 2, 4}
     steps = 0
     print("How do you want the program to run ? Options:")
-    print("Long (the program will go through each step until it reaches 4)")
-    print("Short (if the program goes through a step it already met before, it will stop and go on to next number)")
-    while True:
+    print("Long(l) (the program will go through each step until it reaches 4)")
+    print("Short(s) (if the program goes through a step it already met before, it will stop and go on to next number)")
+    full_short = input(">")
+    while full_short not in ["l", "s"]:
+        print("you have to enter on of the two options (l/s)")
         full_short = input(">")
-        try:
-            full_short in ["Long", "Short"]
-            if full_short == "Long":
-                print("Ok, the program will run through"
-                      " every step and show you how many there are.")
-                break
-            elif full_short == "Short":
-                print("Ok, the program will go to the next number"
-                      "if it meets a step it already went through.")
-                break
-            raise Error
-        except:
-            print("you have to enter on of the two options (Long/Short)")
-    restart_level = "ended"
-    while restart_level == "ended":
+    if full_short == "l":
+        print("Ok, the program will run through")
+        print("every step and show you how many there are.")
+    elif full_short == "s":
+        print("Ok, the program will go to the next number")
+        print("if it meets a step it already went through.")
+    restart_level = "e"
+    while restart_level == "e":
         print("How many times do you want the program to repeat ?")
         while True:
             repeat_range = input(">")
@@ -84,7 +79,7 @@ while restart_level == "beginning":
                 print("You have to enter a positive number with no decimals.")
         for i in range(int(repeat_range)):
             current_number = starting_point
-            if full_short == "Long":
+            if full_short == "l":
                 verified_set_2.add(int(starting_point))
             print(current_number)
             while current_number not in verified_set:
@@ -96,17 +91,17 @@ while restart_level == "beginning":
                 print(int(current_number))
                 current_set.add(int(current_number))
                 steps += 1
-            if full_short == "Short":
+            if full_short == "s":
                 verified_set.update(current_set)
                 print(verified_set)
-            elif full_short == "Long":
+            elif full_short == "l":
                 print(f"Number of steps before reaching 4 : {steps}")
             starting_point = int(starting_point) + 1
             steps = 0
 
-        if full_short == "Short":
+        if full_short == "s":
             final_list = list(verified_set)
-        else:
+        elif full_short == "l":
             final_list = list(verified_set_2)
         final_list.sort()
         print(f"These are all the numbers that were verified : {final_list}")
@@ -119,19 +114,19 @@ while restart_level == "beginning":
             else:
                 break
         if restart == "yes":
-            print("Do you want to restart from beginning or from where you ended (Options : beginning/ended)?")
+            print("Do you want to restart from beginning(b) or from where you ended(e)?")
             while True:
                 restart_level = input(">")
-                if restart_level not in ["beginning", "ended"]:
-                    print("Your answer must be one of the two options (beginning/ended)")
+                if restart_level not in ["b", "e"]:
+                    print("Your answer must be one of the two options (b/e)")
                 else:
                     break
-            if restart_level == "ended":
+            if restart_level == "e":
                 print("That means the program will start at the number it")
                 print("ended with, keep the same running mode (Short/Long)")
                 print("and keep the same verified list. You will only be ")
                 print("asked how many times it should run.")
-            elif restart_level == "beginning":
+            elif restart_level == "b":
                 print("That means the program will run again completely, as" 
                       " if it was the first time you ran the program.")
         else:
