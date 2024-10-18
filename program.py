@@ -1,3 +1,9 @@
+"""
+-------------------------------------------------------------------------------
+script for collatz conjecture
+-------------------------------------------------------------------------------
+"""
+
 import time
 
 print("Hello, the program you are about to use is to check the Collatz Conjecture.")
@@ -47,15 +53,16 @@ while restart_level == "b":
             starting_point = int(starting_point)
             print(f"Ok, the program will start at {starting_point}.")
             break
-        except:
+        except ValueError:
             print("You have to enter a positive number with no decimals.")
     verified_set = {1, 2, 4}
     verified_set_2 = {1, 2, 4}
     current_set = {1, 2, 4}
     steps = 0
     print("How do you want the program to run ? Options:")
-    print("Long(l) (the program will go through each step until it reaches 4)")
-    print("Short(s) (if the program goes through a step it already met before, it will stop and go on to next number)")
+    print("Long(l) = the program will go through each step until it reaches 4. ")
+    print("Short(s) = if the program goes through a step it already met before,")
+    print("           it will stop and go on to next number (Faster).")
     full_short = input(">")
     while full_short not in ["l", "s"]:
         print("you have to enter on of the two options (l/s)")
@@ -75,8 +82,30 @@ while restart_level == "b":
                 repeat_range = int(repeat_range)
                 print(f"Ok, the program will repeat {repeat_range} times.")
                 break
-            except:
+            except ValueError:
                 print("You have to enter a positive number with no decimals.")
+        if full_short == "l":
+            print("""Here is an example of the program:
+                     3  <-- first number
+                     __
+                     10 |
+                     5  |
+                     16 | ---- The steps before reaching four
+                     8  |
+                     4  |
+                     ---
+                     {3, 10, 5, 16, 8}  <-- All the numbers that were verified before reaching four""")
+        elif full_short == "s":
+            print("""Here is an example of the program:
+                                 3  <-- first number
+                                 __
+                                 10 |
+                                 5  |
+                                 16 | ---- The steps before reaching a number already verified
+                                 8  |
+                                 4  |
+                                 ---
+                                 {3, 10, 5, 16, 8}  <-- All the numbers that were verified before reaching four""")
         for i in range(int(repeat_range)):
             current_number = starting_point
             if full_short == "l":
@@ -93,12 +122,12 @@ while restart_level == "b":
                 steps += 1
             if full_short == "s":
                 verified_set.update(current_set)
-                print(verified_set)
+                print(current_set)
             elif full_short == "l":
                 print(f"Number of steps before reaching 4 : {steps}")
             starting_point = int(starting_point) + 1
             steps = 0
-
+        final_list = []
         if full_short == "s":
             final_list = list(verified_set)
         elif full_short == "l":
