@@ -97,15 +97,15 @@ while restart_level == "b":
                      {3, 10, 5, 16, 8}  <-- All the numbers that were verified before reaching four""")
         elif full_short == "s":
             print("""Here is an example of the program:
-                                 3  <-- first number
-                                 __
-                                 10 |
-                                 5  |
-                                 16 | ---- The steps before reaching a number already verified
-                                 8  |
-                                 4  |
-                                 ---
-                                 {3, 10, 5, 16, 8}  <-- All the numbers that were verified before reaching four""")
+                     3  <-- first number
+                     __
+                     10 |
+                     5  |
+                     16 | ---- The steps before reaching a number already verified
+                     8  |
+                     4  |
+                     ---
+                     {3, 10, 5, 16, 8}  <-- All the numbers that were verified before reaching four""")
         for i in range(int(repeat_range)):
             current_number = starting_point
             if full_short == "l":
