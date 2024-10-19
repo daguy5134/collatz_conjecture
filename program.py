@@ -5,6 +5,7 @@ script for collatz conjecture
 """
 
 import time
+import matplotlib.pyplot as plt
 
 print("Hello, the program you are about to use is to check the Collatz Conjecture.")
 time.sleep(2)
@@ -49,7 +50,7 @@ while restart_level == "b":
     print("What do you want to do ? Options :")
     print("""Single number (s) = This will only test one number and 
 will generate a graphic with all the steps.""")
-    time.sleep(4)
+    time.sleep(1)
     print("""Multiple numbers (m) = This will test a series of numbers.
 You will be able to choose many parameters like 
 the amount of numbers to test and which one to start with.""")
@@ -166,19 +167,21 @@ the amount of numbers to test and which one to start with.""")
                 final_list = list(verified_set_2)
             final_list.sort()
             print(f"These are all the numbers that were verified : {final_list}")
-        else:
-            print("What is the number you want to test ?")
-            while True:
-                test_number = input(">")
-                try:
-                    test_number == int(test_number)
-                    print(f"Ok, the program will test the number {test_number}.")
-                    break
-                except ValueError:
-                    print("You have to enter a positive number with no decimal.")
-            print("This is an example of what the program will look like :")
-            print("3 <--- Your number")
-            print("""__
+    else:
+        print("What is the number you want to test ?")
+        while True:
+            test_number = input(">")
+            try:
+                test_number == int(test_number)
+                print(f"Ok, the program will test the number {test_number}.")
+                break
+            except ValueError:
+                print("You have to enter a positive number with no decimal.")
+        print("This is an example of what the program will look like :")
+        time.sleep(3)
+        print("3 <--- Your number")
+        time.sleep(2)
+        print("""__
 10 |
 5  |
 16 |
@@ -186,51 +189,56 @@ the amount of numbers to test and which one to start with.""")
 4  |
 2  |
 1  |
----
-{10, 5, 16, 8, 4, 2, 1} <--- All the steps""")
-            print("Then the program will generate a graphic of all the steps.")
-            current_number = test_number
-            steps = 0
-            while current_number != 1:
-                current_set.add(int(current_number))
-                if (int(current_number) % 2) == 0:
-                    current_number = int(current_number) // 2
-                else:
-                    current_number = int(current_number) * 3 + 1
-                current_number += 1
-                steps += 1
-        print("Do you want to run the program another time [yes(y)/no(n)] ?")
-
-        while True:
-            restart = input(">")
-            if restart not in ["y", "n"]:
-                print("You have to enter one of the two options (y/n).")
+---""")
+        time.sleep(4)
+        print("Then the program will generate a graphic of all the steps.")
+        time.sleep(3)
+        current_number = test_number
+        current_array = []
+        while current_number != 1:
+            current_array.append(int(current_number))
+            print(current_number)
+            if (int(current_number) % 2) == 0:
+                current_number = int(current_number) // 2
             else:
-                break
-        if restart == "y":
-            if single_many == "m":
-                print("Do you want to restart from beginning(b) or from where you ended(e)?")
-                while True:
-                    restart_level = input(">")
-                    if restart_level not in ["b", "e"]:
-                        print("Your answer must be one of the two options (b/e)")
-                    else:
-                        break
-                if restart_level == "e":
-                    print("That means the program will start at the number it")
-                    time.sleep(3)
-                    print("ended with, keep the same running mode (Short/Long)")
-                    time.sleep(3)
-                    print("and keep the same verified list. You will only be ")
-                    time.sleep(3)
-                    print("asked how many times it should run.")
-                    time.sleep(3)
-                elif restart_level == "b":
-                    print("That means the program will run again completely, as")
-                    time.sleep(3)
-                    print(" if it was the first time you ran the program.")
-                    time.sleep(3)
+                current_number = int(current_number) * 3 + 1
+        plt.plot(current_array)
+        plt.xlabel("Number of steps")
+        plt.ylabel('Value of steps')
+        plt.title(f"Trajectory of the Collatz Conjecture starting with {test_number}")
+        plt.show()
+    print("Do you want to run the program another time [yes(y)/no(n)] ?")
+
+    while True:
+        restart = input(">")
+        if restart not in ["y", "n"]:
+            print("You have to enter one of the two options (y/n).")
         else:
-            print("Ok, the program will stop now.")
             break
+    if restart == "y":
+        if single_many == "m":
+            print("Do you want to restart from beginning(b) or from where you ended(e)?")
+            while True:
+                restart_level = input(">")
+                if restart_level not in ["b", "e"]:
+                    print("Your answer must be one of the two options (b/e)")
+                else:
+                    break
+            if restart_level == "e":
+                print("That means the program will start at the number it")
+                time.sleep(3)
+                print("ended with, keep the same running mode (Short/Long)")
+                time.sleep(3)
+                print("and keep the same verified list. You will only be ")
+                time.sleep(3)
+                print("asked how many times it should run.")
+                time.sleep(3)
+            elif restart_level == "b":
+                print("That means the program will run again completely, as")
+                time.sleep(3)
+                print(" if it was the first time you ran the program.")
+                time.sleep(3)
+    else:
+        print("Ok, the program will stop now.")
+        break
 exit()
