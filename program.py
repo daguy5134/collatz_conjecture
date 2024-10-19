@@ -74,6 +74,7 @@ while restart_level == "b":
         print("Ok, the program will go to the next number")
         print("if it meets a step it already went through.")
     restart_level = "e"
+    presentation = False
     while restart_level == "e":
         print("How many times do you want the program to repeat ?")
         while True:
@@ -84,28 +85,46 @@ while restart_level == "b":
                 break
             except ValueError:
                 print("You have to enter a positive number with no decimals.")
-        if full_short == "l":
-            print("""Here is an example of the program:
-                     3  <-- first number
-                     __
-                     10 |
-                     5  |
-                     16 | ---- The steps before reaching four
-                     8  |
-                     4  |
-                     ---
-                     {3, 10, 5, 16, 8}  <-- All the numbers that were verified before reaching four""")
-        elif full_short == "s":
-            print("""Here is an example of the program:
-                     3  <-- first number
-                     __
-                     10 |
-                     5  |
-                     16 | ---- The steps before reaching a number already verified
-                     8  |
-                     4  |
-                     ---
-                     {3, 10, 5, 16, 8}  <-- All the numbers that were verified before reaching four""")
+        if not presentation:
+            print("")
+            time.sleep(1)
+            print("____________________________________________________________________")
+            print("")
+            time.sleep(1)
+            if full_short == "l":
+                print("Here is an example of what the program will look like:")
+                time.sleep(3)
+                print("3  <-- first number")
+                time.sleep(2)
+                print("""__
+            10 |
+            5  |
+            16 | ---- The steps before reaching four
+            8  |
+            4  |
+            --- """)
+                time.sleep(4)
+                print("{3, 10, 5, 16, 8}  <-- All the numbers verified before reaching four")
+                time.sleep(3)
+            elif full_short == "s":
+                print("Here is an example of what the program will look like:")
+                time.sleep(3)
+                print("3  <-- first number")
+                time.sleep(2)
+                print("""__
+            10 |
+            5  |
+            16 | ---- The steps before reaching a number already verified
+            8  |
+            4  |
+            --- """)
+                time.sleep(4)
+                print("{3, 10, 5, 16, 8}  <-- All the numbers verified this time")
+                time.sleep(3)
+            print("")
+            print("_____________________________________________________________")
+            print("")
+            presentation = True
         for i in range(int(repeat_range)):
             current_number = starting_point
             if full_short == "l":
@@ -152,12 +171,18 @@ while restart_level == "b":
                     break
             if restart_level == "e":
                 print("That means the program will start at the number it")
+                time.sleep(3)
                 print("ended with, keep the same running mode (Short/Long)")
+                time.sleep(3)
                 print("and keep the same verified list. You will only be ")
+                time.sleep(3)
                 print("asked how many times it should run.")
+                time.sleep(3)
             elif restart_level == "b":
-                print("That means the program will run again completely, as") 
+                print("That means the program will run again completely, as")
+                time.sleep(3)
                 print(" if it was the first time you ran the program.")
+                time.sleep(3)
         else:
             print("Ok, the program will stop now.")
             break
