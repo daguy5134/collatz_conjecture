@@ -4,6 +4,7 @@ script for collatz conjecture
 -------------------------------------------------------------------------------
 """
 
+import math
 import time
 import matplotlib.pyplot as plt
 
@@ -48,13 +49,12 @@ if intro == "i":
 restart_level = "b"
 while restart_level == "b":
     print("What do you want to do ? Options :")
+    time.sleep(1)
     print("""Single number (s) = This will only test one number and 
 will generate a graphic with all the steps.""")
-    time.sleep(1)
     print("""Multiple numbers (m) = This will test a series of numbers.
 You will be able to choose many parameters like 
 the amount of numbers to test and which one to start with.""")
-    time.sleep(4)
     single_many = input(">")
     while single_many not in ["s", "m"]:
         print("You have to enter one of the two options (s/m).")
@@ -90,6 +90,7 @@ the amount of numbers to test and which one to start with.""")
         restart_level = "e"
         presentation = False
         while restart_level == "e":
+            restart_level = ""
             print("How many times do you want the program to repeat ?")
             while True:
                 repeat_range = input(">")
@@ -99,6 +100,10 @@ the amount of numbers to test and which one to start with.""")
                     break
                 except ValueError:
                     print("You have to enter a positive number with no decimals.")
+            total_sqrt1 = math.sqrt(int(repeat_range))
+            total_sqrt = math.ceil(int(total_sqrt1))
+            while total_sqrt ** 2 < total_sqrt1 ** 2:
+                total_sqrt += 1
             if not presentation:
                 print("")
                 time.sleep(1)
@@ -111,12 +116,12 @@ the amount of numbers to test and which one to start with.""")
                     print("3  <-- first number")
                     time.sleep(2)
                     print("""__
-                10 |
-                5  |
-                16 | ---- The steps before reaching four
-                8  |
-                4  |
-                --- """)
+10 |
+5  |
+16 | ---- The steps before reaching four
+8  |
+4  |
+--- """)
                     time.sleep(4)
                     print("{3, 10, 5, 16, 8}  <-- All the numbers verified before reaching four")
                     time.sleep(3)
@@ -126,12 +131,12 @@ the amount of numbers to test and which one to start with.""")
                     print("3  <-- first number")
                     time.sleep(2)
                     print("""__
-                10 |
-                5  |
-                16 | ---- The steps before reaching a number already verified
-                8  |
-                4  |
-                --- """)
+10 |
+5  |
+16 | ---- The steps before reaching a number already verified
+8  |
+4  |
+--- """)
                     time.sleep(4)
                     print("{3, 10, 5, 16, 8}  <-- All the numbers verified this time")
                     time.sleep(3)
@@ -139,12 +144,16 @@ the amount of numbers to test and which one to start with.""")
                 print("_____________________________________________________________")
                 print("")
                 presentation = True
+            current_array = []
+            position = 0
             for i in range(int(repeat_range)):
+                position += 1
                 current_number = starting_point
                 if full_short == "l":
                     verified_set_2.add(int(starting_point))
                 print(current_number)
                 while current_number not in verified_set:
+                    current_array.append(int(current_number))
                     if (int(current_number) % 2) == 0:
                         current_number = int(current_number) // 2
                     else:
@@ -153,6 +162,12 @@ the amount of numbers to test and which one to start with.""")
                     print(int(current_number))
                     current_set.add(int(current_number))
                     steps += 1
+                if full_short == "l":
+                    plt.xticks([])
+                    plt.yticks([])
+                    plt.subplot(int(total_sqrt), int(total_sqrt), int(position))
+                    plt.plot(current_array)
+                    plt.title(f"Number = {starting_point}", fontsize=5)
                 if full_short == "s":
                     verified_set.update(current_set)
                     print(current_set)
@@ -165,6 +180,7 @@ the amount of numbers to test and which one to start with.""")
                 final_list = list(verified_set)
             elif full_short == "l":
                 final_list = list(verified_set_2)
+                plt.show()
             final_list.sort()
             print(f"These are all the numbers that were verified : {final_list}")
     else:
@@ -178,9 +194,9 @@ the amount of numbers to test and which one to start with.""")
             except ValueError:
                 print("You have to enter a positive number with no decimal.")
         print("This is an example of what the program will look like :")
-        time.sleep(3)
-        print("3 <--- Your number")
         time.sleep(2)
+        print("3 <--- Your number")
+        time.sleep(1)
         print("""__
 10 |
 5  |
@@ -190,7 +206,7 @@ the amount of numbers to test and which one to start with.""")
 2  |
 1  |
 ---""")
-        time.sleep(4)
+        time.sleep(2)
         print("Then the program will generate a graphic of all the steps.")
         time.sleep(3)
         current_number = test_number
