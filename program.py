@@ -63,6 +63,7 @@ the amount of numbers to test and which one to start with.""")
         print("What should be the starting point ?")
         while True:
             starting_point = input(">")
+            starting_point = starting_point.replace(" ", "")
             try:
                 starting_point = int(starting_point)
                 print(f"Ok, the program will start at {starting_point}.")
@@ -94,6 +95,7 @@ the amount of numbers to test and which one to start with.""")
             print("How many times do you want the program to repeat ?")
             while True:
                 repeat_range = input(">")
+                repeat_range = repeat_range.replace(" ", "")
                 try:
                     repeat_range = int(repeat_range)
                     print(f"Ok, the program will repeat {repeat_range} times.")
@@ -187,6 +189,7 @@ the amount of numbers to test and which one to start with.""")
         print("What is the number you want to test ?")
         while True:
             test_number = input(">")
+            test_number = test_number.replace(" ", "")
             try:
                 test_number == int(test_number)
                 print(f"Ok, the program will test the number {test_number}.")
